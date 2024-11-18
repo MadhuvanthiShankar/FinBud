@@ -1,0 +1,91 @@
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fffaf4;
+  color: #333;
+  font-family: 'Inter', sans-serif; 
+}
+
+.navbar {
+  background-color: #fc8019;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  width: 100%;
+  height: 35px;
+}
+.navbar-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.navbar-left{
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.navbar-logo{
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+.navbar-title{
+  font-size: 1.5em;
+  color: white;
+}
+.navbar-link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: auto;
+}
+
+.navbar-link:hover {
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: end;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #e0e0e0;
+}
+
+.clerk-user-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.cl-internal-c4jh7f {
+  margin-right: 20px;
+}
+
+.clerk-user-button:hover {
+  color: #e0e0e0;
+}
+
+.sign-in-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
