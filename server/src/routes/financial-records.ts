@@ -17,16 +17,16 @@ router.get("/getAllByUserID/:userId", async (req: Request, res: Response) => {
 });
 
 router.post("/", async (req: Request, res: Response) => {
-    try{
-        const newRecordBody = req.body;
-        const newRecord = new FinancialRecordModel(newRecordBody);
-        const savedRecord = await newRecord.save();
+  try {
+    const newRecordBody = req.body;
+    const newRecord = new FinancialRecordModel(newRecordBody);
+    const savedRecord = await newRecord.save();
 
-        res.status(200).send(savedRecord);
-    } catch (err) {
-        console.error("Error saving record:", err);
-        res.status(500).send(err);
-    }
+    res.status(201).send(savedRecord); // HTTP status 201 for resource creation
+  } catch (err) {
+    console.error("Error saving record:", err);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 router.put("/:id", async (req: Request, res: Response) => {
@@ -36,13 +36,14 @@ router.put("/:id", async (req: Request, res: Response) => {
     const record = await FinancialRecordModel.findByIdAndUpdate(
       id,
       newRecordBody,
-      { new: true }
+      { new: true, runValidators: true } // Ensure validations are run if they are set on your schema
     );
 
-    if (!record) return res.status(404).send();
+    if (!record) return res.status(404).send("Record not found");
     res.status(200).send(record);
   } catch (err) {
-    res.status(500).send(err);
+    console.error("Error updating record:", err);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -50,10 +51,11 @@ router.delete("/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const record = await FinancialRecordModel.findByIdAndDelete(id);
-    if (!record) return res.status(404).send();
-    res.status(200).send(record);
+    if (!record) return res.status(404).send("Record not found");
+    res.status(200).send("Record deleted successfully");
   } catch (err) {
-    res.status(500).send(err);
+    console.error("Error deleting record:", err);
+    res.status(500).send("Internal Server Error");
   }
 });
 
